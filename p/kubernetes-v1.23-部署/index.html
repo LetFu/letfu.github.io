@@ -1,0 +1,286 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="基于kubeadm工具的kubernetes 1.23版本部署"><title>kubernetes v1.23 部署</title><link rel=canonical href=/p/kubernetes-v1.23-%E9%83%A8%E7%BD%B2/><link rel=stylesheet href=/scss/style.min.ac77dcf8b111b51da39a92990f431923f210f3876d85798a2125667f96dc33a4.css><meta property="og:title" content="kubernetes v1.23 部署"><meta property="og:description" content="基于kubeadm工具的kubernetes 1.23版本部署"><meta property="og:url" content="/p/kubernetes-v1.23-%E9%83%A8%E7%BD%B2/"><meta property="og:site_name" content="chmod's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="kubenetes"><meta property="article:tag" content="docker"><meta property="article:tag" content="部署文档"><meta property="article:published_time" content="2022-03-13T12:00:00+08:00"><meta property="article:modified_time" content="2022-03-13T12:00:00+08:00"><meta name=twitter:title content="kubernetes v1.23 部署"><meta name=twitter:description content="基于kubeadm工具的kubernetes 1.23版本部署"></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hudff42e9cceefac4b6035d553b968c716_25004_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
+<span class=emoji>🍉</span></figure><div class=site-meta><h1 class=site-name><a href=/>chmod's blog</a></h1><h2 class=site-description>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2></div></header><ol class=social-menu><li><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>暗色模式</span></li></div></ol></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3/>部署文档</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/kubernetes-v1.23-%E9%83%A8%E7%BD%B2/>kubernetes v1.23 部署</a></h2><h3 class=article-subtitle>基于kubeadm工具的kubernetes 1.23版本部署</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>Mar 13, 2022</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 4 分钟</time></div></footer></div></header><section class=article-content><blockquote><p>部署环境：Ubuntu 20.04
+部署版本：kubernetes 1.23
+Runtime：containerd</p></blockquote><h2 id=安装前环境准备>安装前环境准备</h2><blockquote><p><a class=link href=https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/ target=_blank rel=noopener>https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/</a></p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/modules-load.d/containerd.conf
+</span></span></span><span class=line><span class=cl><span class=s>overlay
+</span></span></span><span class=line><span class=cl><span class=s>br_netfilter
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo modprobe overlay
+</span></span><span class=line><span class=cl>sudo modprobe br_netfilter
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置必需的 sysctl 参数，这些参数在重新启动后仍然存在。</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-iptables  = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.ipv4.ip_forward                 = 1
+</span></span></span><span class=line><span class=cl><span class=s>net.bridge.bridge-nf-call-ip6tables = 1
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 应用 sysctl 参数而无需重新启动</span>
+</span></span><span class=line><span class=cl>sudo sysctl --system
+</span></span></code></pre></td></tr></table></div></div><h2 id=containerd-安装>containerd 安装</h2><h3 id=设置储存库>设置储存库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl> <span class=c1># 安装必要软件</span>
+</span></span><span class=line><span class=cl> sudo apt-get update
+</span></span><span class=line><span class=cl> sudo apt-get install <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    ca-certificates <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    curl <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    gnupg <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    lsb-release 
+</span></span><span class=line><span class=cl>    
+</span></span></code></pre></td></tr></table></div></div><h3 id=添加docker官方gpg密钥>添加Docker官方GPG密钥</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class=p>|</span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</span></span></code></pre></td></tr></table></div></div><h3 id=设置稳定版储存库>设置稳定版储存库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>  <span class=s2>&#34;deb [arch=</span><span class=k>$(</span>dpkg --print-architecture<span class=k>)</span><span class=s2> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+</span></span></span><span class=line><span class=cl><span class=s2>  </span><span class=k>$(</span>lsb_release -cs<span class=k>)</span><span class=s2> stable&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span></code></pre></td></tr></table></div></div><h3 id=安装docker引擎>安装Docker引擎</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install docker-ce docker-ce-cli containerd.io
+</span></span><span class=line><span class=cl>sudo docker info
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置containerd>配置containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo mkdir -p /etc/containerd
+</span></span><span class=line><span class=cl>containerd config default <span class=p>|</span> sudo tee /etc/containerd/config.toml
+</span></span></code></pre></td></tr></table></div></div><h3 id=重启containerd>重启containerd</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span></code></pre></td></tr></table></div></div><h3 id=使用-systemd-cgroup-驱动程序>使用 systemd cgroup 驱动程序</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 结合 runc 使用 systemd cgroup 驱动，在 /etc/containerd/config.toml 中设置</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>plugins.<span class=s2>&#34;io.containerd.grpc.v1.cri&#34;</span>.containerd.runtimes.runc<span class=o>]</span>
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>  <span class=o>[</span>plugins.<span class=s2>&#34;io.containerd.grpc.v1.cri&#34;</span>.containerd.runtimes.runc.options<span class=o>]</span>
+</span></span><span class=line><span class=cl>    <span class=nv>SystemdCgroup</span> <span class=o>=</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl><span class=c1># 重启</span>
+</span></span><span class=line><span class=cl>sudo systemctl restart containerd
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置docker驱动>配置Docker驱动</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo mkdir /etc/docker
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF | sudo tee /etc/docker/daemon.json
+</span></span></span><span class=line><span class=cl><span class=s>{
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;log-driver&#34;: &#34;json-file&#34;,
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;log-opts&#34;: {
+</span></span></span><span class=line><span class=cl><span class=s>    &#34;max-size&#34;: &#34;100m&#34;
+</span></span></span><span class=line><span class=cl><span class=s>  },
+</span></span></span><span class=line><span class=cl><span class=s>  &#34;storage-driver&#34;: &#34;overlay2&#34;
+</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=重启服务>重启服务</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> docker
+</span></span><span class=line><span class=cl>sudo systemctl daemon-reload
+</span></span><span class=line><span class=cl>sudo systemctl restart docker
+</span></span></code></pre></td></tr></table></div></div><h2 id=安装-kubeadmkubelet-和-kubectl>安装 kubeadm、kubelet 和 kubectl</h2><h3 id=1-更新-apt-包索引并安装使用-kubernetes-apt-仓库所需要的包>1. 更新 apt 包索引并安装使用 Kubernetes apt 仓库所需要的包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo apt-get update
+</span></span><span class=line><span class=cl>sudo apt-get install -y apt-transport-https ca-certificates curl
+</span></span></code></pre></td></tr></table></div></div><h3 id=2-下载-google-cloud-公开签名秘钥访问不了google则跳过>2. 下载 Google Cloud 公开签名秘钥(访问不了Google则跳过)</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+</span></span></code></pre></td></tr></table></div></div><h3 id=3-添加-kubernetes-apt-仓库>3. 添加 Kubernetes apt 仓库</h3><ul><li>可以访问Google则添加官方源即可</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main&#34;</span> <span class=p>|</span> sudo tee /etc/apt/sources.list.d/kubernetes.list
+</span></span></code></pre></td></tr></table></div></div><ul><li>无法访问则设置为国内镜像源，以中科大源为例：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>cat <span class=s>&lt;&lt;EOF &gt; /etc/apt/sources.list.d/kubernetes.list
+</span></span></span><span class=line><span class=cl><span class=s>deb http://mirrors.ustc.edu.cn/kubernetes/apt kubernetes-xenial main
+</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=4-更新源>4. 更新源</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update
+</span></span></code></pre></td></tr></table></div></div><p>更新源可能会<code>The following signatures couldn't be verified because the public key is not available: NO_PUBKEY FEEA9169307EA071 NO_PUBKEY 8B57C5C2836F4BEB</code>的问题，可以通过将提示缺少的公钥添加到服务器进行解决：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys <span class=nv>$PUBKEY</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=5-安装工具>5. 安装工具</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 因安装时1.23为当前最新版本，所以没有指定版本安装，工具需要根据之后运行的kubernetes版本进行指定版本安装</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo apt-get install -y kubelet kubeadm kubectl
+</span></span><span class=line><span class=cl>sudo apt-mark hold kubelet kubeadm kubectl
+</span></span></code></pre></td></tr></table></div></div><h2 id=使用kubeadm初始化集群>使用kubeadm初始化集群</h2><h3 id=修改kubeadm默认配置信息>修改kubeadm默认配置信息</h3><ol><li>确定使用哪种网络插件实现，kubeadm 只支持 CNI 网络插件；这里使用 Flannel 插件</li><li>修改 kubeadm 的默认仓库为阿里云仓库镜像</li></ol><p>由于 Kubernetes 镜像仓库在 <code>k8s.gcr.io</code> 上，大陆无法访问，需要使用阿里云的镜像站，因此需要修改 kubeadm 默认配置。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 导出默认配置</span>
+</span></span><span class=line><span class=cl>kubeadm config print init-defaults &gt; kubeadm-init-config.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改仓库镜像地址与</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s2>&#34;s/imageRepository: .*/imageRepository: registry.cn-hangzhou.aliyuncs.com\/google_containers/g&#34;</span> kubeadm-init-config.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改kubernetes版本号（一般默认和kubeadm版本一致）</span>
+</span></span><span class=line><span class=cl>sed -i <span class=s2>&#34;s/kubernetesVersion: .*/kubernetesVersion: v1.23.4/g&#34;</span> kubeadm-init-config.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改默认criSocket为containerd</span>
+</span></span><span class=line><span class=cl><span class=c1># sed -i &#34;s/criSocket: .*/criSocket: \/run\/containerd\/containerd.sock/g&#34; kubeadm-init-config.yaml</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改默认DNS服务</span>
+</span></span><span class=line><span class=cl><span class=nv>address</span><span class=o>=</span><span class=sb>`</span>ifconfig eth0 <span class=p>|</span> egrep <span class=s2>&#34;inet\s&#34;</span> <span class=p>|</span> awk <span class=s1>&#39;{print $2}&#39;</span><span class=sb>`</span> <span class=o>&amp;&amp;</span> sed -i <span class=s2>&#34;s/advertiseAddress: .*/advertiseAddress: </span><span class=si>${</span><span class=nv>address</span><span class=si>}</span><span class=s2>/g&#34;</span> kubeadm-init-config.yaml
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 在 kubeadm-init-config.yaml 增加 podSubnet: 参数，如</span>
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>kind: ClusterConfiguration
+</span></span><span class=line><span class=cl>networking:
+</span></span><span class=line><span class=cl>  podSubnet: 10.244.0.0/16
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>kind: KubeletConfiguration
+</span></span><span class=line><span class=cl>apiVersion: kubelet.config.k8s.io/v1beta1
+</span></span><span class=line><span class=cl>cgroupDriver: systemd
+</span></span></code></pre></td></tr></table></div></div><h3 id=使用配置文件进行初始化>使用配置文件进行初始化</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubeadm init  --config ./kubeadm-init-config.yaml
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置kubectl>配置Kubectl</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 非root用户可以运行 kubectl</span>
+</span></span><span class=line><span class=cl>mkdir -p <span class=nv>$HOME</span>/.kube
+</span></span><span class=line><span class=cl>sudo cp -i /etc/kubernetes/admin.conf <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>sudo chown <span class=k>$(</span>id -u<span class=k>)</span>:<span class=k>$(</span>id -g<span class=k>)</span> <span class=nv>$HOME</span>/.kube/config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># root用户运行kubectl</span>
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>KUBECONFIG</span><span class=o>=</span>/etc/kubernetes/admin.conf
+</span></span></code></pre></td></tr></table></div></div><h3 id=部署flannel插件>部署flannel插件</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
+</span></span></code></pre></td></tr></table></div></div><h3 id=其他节点加入>其他节点加入</h3><p>其它的node节点加入集群(<strong>如果只有一台master则跳过这个步骤</strong>)；<strong>确保node节点和master节点的kube工具版本相同，镜像版本相同</strong>；<strong>node节点在kubelet init之前的步骤和master的步骤相同</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubeadm join --token &lt;token&gt; &lt;control-plane-host&gt;:&lt;control-plane-port&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;
+</span></span></code></pre></td></tr></table></div></div><h3 id=将master节点设置为工作节点>将master节点设置为工作节点</h3><p><strong>K8S集群默认不会将Pod调度到k8s-master上。在Master上，去除master的taint，使用master也能被调度pod，可以运行以下命令使其作为一个工作节点：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>kubectl taint nodes --all node-role.kubernetes.io/master-
+</span></span></code></pre></td></tr></table></div></div><h3 id=后续node节点加入集群>后续Node节点加入集群</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 显示k8s当前所有token</span>
+</span></span><span class=line><span class=cl>kubeadm token list
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 生成一条永久有效的token</span>
+</span></span><span class=line><span class=cl>kubeadm token create --ttl <span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 使用openssl获取ca证书sha256编码的hash值</span>
+</span></span><span class=line><span class=cl>openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt <span class=p>|</span> openssl rsa -pubin -outform der 2&gt;/dev/null <span class=p>|</span> openssl dgst -sha256 -hex <span class=p>|</span> sed <span class=s1>&#39;s/^.* //&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># node节点加入master节点</span>
+</span></span><span class=line><span class=cl>kubeadm join 10.10.7.30:6443 --token Token --discovery-token-ca-cert-hash sha256:ca的hash
+</span></span></code></pre></td></tr></table></div></div><h3 id=kubernetes环境重置>kubernetes环境重置</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 重置k8s </span>
+</span></span><span class=line><span class=cl>kubeadm reset
+</span></span><span class=line><span class=cl>iptables -F <span class=o>&amp;&amp;</span> iptables -t nat -F <span class=o>&amp;&amp;</span> iptables -t mangle -F <span class=o>&amp;&amp;</span> iptables -X
+</span></span><span class=line><span class=cl>rm -rf ~/.kube
+</span></span><span class=line><span class=cl>systemctl stop kubelet
+</span></span><span class=line><span class=cl>systemctl stop docker
+</span></span><span class=line><span class=cl>rm -rf /var/lib/cni/ /var/lib/kubelet/* /etc/cni/
+</span></span><span class=line><span class=cl>ifconfig cni0 down
+</span></span><span class=line><span class=cl>ifconfig flannel.1 down
+</span></span><span class=line><span class=cl>ifconfig docker0 down
+</span></span><span class=line><span class=cl>ip link delete cni0
+</span></span><span class=line><span class=cl>ip link delete flannel.1
+</span></span><span class=line><span class=cl>systemctl start docker
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 重载kubelet服务配置文件</span>
+</span></span><span class=line><span class=cl>systemctl daemon-reload 
+</span></span><span class=line><span class=cl><span class=c1># 重启kubelet</span>
+</span></span><span class=line><span class=cl>systemctl restart kubelet
+</span></span></code></pre></td></tr></table></div></div><h2 id=端口及协议>端口及协议</h2><h3 id=master>master</h3><div class=table-wrapper><table><thead><tr><th><strong>协议</strong></th><th><strong>方向</strong></th><th><strong>端口范围</strong></th><th><strong>目的</strong></th><th><strong>使用者</strong></th></tr></thead><tbody><tr><td>TCP</td><td>入站</td><td>6443</td><td>Kubernetes API server</td><td>所有</td></tr><tr><td>TCP</td><td>入站</td><td>2379-2380</td><td>etcd server client API</td><td>kube-apiserver, etcd</td></tr><tr><td>TCP</td><td>入站</td><td>10250</td><td>Kubelet API</td><td>自身, 控制面</td></tr><tr><td>TCP</td><td>入站</td><td>10259</td><td>kube-scheduler</td><td>自身</td></tr><tr><td>TCP</td><td>入站</td><td>10257</td><td>kube-controller-manager</td><td>自身</td></tr></tbody></table></div><h3 id=node>node</h3><div class=table-wrapper><table><thead><tr><th><strong>协议</strong></th><th><strong>方向</strong></th><th><strong>端口范围</strong></th><th><strong>目的</strong></th><th><strong>使用者</strong></th></tr></thead><tbody><tr><td>TCP</td><td>入站</td><td>10250</td><td>Kubelet API</td><td>自身, 控制面</td></tr><tr><td>TCP</td><td>入站</td><td>30000-32767</td><td>NodePort Services†</td><td>所有</td></tr></tbody></table></div></section><footer class=article-footer><section class=article-tags><a href=/tags/kubenetes/>kubenetes</a>
+<a href=/tags/docker/>docker</a>
+<a href=/tags/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3/>部署文档</a></section><section class=article-copyright><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg><span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/><div class=article-details><h2 class=article-title>mosquitto部署及MQTT协议解析</h2></div></a></article></div></div></aside><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2022 chmod's blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.13.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#安装前环境准备>安装前环境准备</a></li><li><a href=#containerd-安装>containerd 安装</a><ol><li><a href=#设置储存库>设置储存库</a></li><li><a href=#添加docker官方gpg密钥>添加Docker官方GPG密钥</a></li><li><a href=#设置稳定版储存库>设置稳定版储存库</a></li><li><a href=#安装docker引擎>安装Docker引擎</a></li><li><a href=#配置containerd>配置containerd</a></li><li><a href=#重启containerd>重启containerd</a></li><li><a href=#使用-systemd-cgroup-驱动程序>使用 systemd cgroup 驱动程序</a></li><li><a href=#配置docker驱动>配置Docker驱动</a></li><li><a href=#重启服务>重启服务</a></li></ol></li><li><a href=#安装-kubeadmkubelet-和-kubectl>安装 kubeadm、kubelet 和 kubectl</a><ol><li><a href=#1-更新-apt-包索引并安装使用-kubernetes-apt-仓库所需要的包>1. 更新 apt 包索引并安装使用 Kubernetes apt 仓库所需要的包</a></li><li><a href=#2-下载-google-cloud-公开签名秘钥访问不了google则跳过>2. 下载 Google Cloud 公开签名秘钥(访问不了Google则跳过)</a></li><li><a href=#3-添加-kubernetes-apt-仓库>3. 添加 Kubernetes apt 仓库</a></li><li><a href=#4-更新源>4. 更新源</a></li><li><a href=#5-安装工具>5. 安装工具</a></li></ol></li><li><a href=#使用kubeadm初始化集群>使用kubeadm初始化集群</a><ol><li><a href=#修改kubeadm默认配置信息>修改kubeadm默认配置信息</a></li><li><a href=#使用配置文件进行初始化>使用配置文件进行初始化</a></li><li><a href=#配置kubectl>配置Kubectl</a></li><li><a href=#部署flannel插件>部署flannel插件</a></li><li><a href=#其他节点加入>其他节点加入</a></li><li><a href=#将master节点设置为工作节点>将master节点设置为工作节点</a></li><li><a href=#后续node节点加入集群>后续Node节点加入集群</a></li><li><a href=#kubernetes环境重置>kubernetes环境重置</a></li></ol></li><li><a href=#端口及协议>端口及协议</a><ol><li><a href=#master>master</a></li><li><a href=#node>node</a></li></ol></li></ol></nav></div></section></aside></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.js defer></script>
+<script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
