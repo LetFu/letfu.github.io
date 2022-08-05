@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MQTT on chmod100's blog</title><link>/tags/mqtt/</link><description>Recent content in MQTT on chmod100's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 13 May 2020 12:00:00 +0800</lastBuildDate><atom:link href="/tags/mqtt/index.xml" rel="self" type="application/rss+xml"/><item><title>mosquitto部署及MQTT协议解析</title><link>/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 13 May 2020 12:00:00 +0800</pubDate><guid>/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</guid><description>&lt;h2 id="安装">安装&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>MQTT on chmod100's blog</title><link>/tags/mqtt/</link><description>Recent content in MQTT on chmod100's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 13 May 2020 12:00:00 +0800</lastBuildDate><atom:link href="/tags/mqtt/index.xml" rel="self" type="application/rss+xml"/><item><title>mosquitto 部署及 MQTT 协议解析</title><link>/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 13 May 2020 12:00:00 +0800</pubDate><guid>/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</guid><description>&lt;h2 id="安装">安装&lt;/h2>
 &lt;h3 id="手动安装">手动安装&lt;/h3>
 &lt;p>下载软件包并安装:&lt;/p>
 &lt;!-- raw HTML omitted -->
@@ -36,7 +36,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http://mosquitto.org/files/source/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#下载 libwebsockets-master.zip&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://codeload.github.com/warmcat/libwebsockets/zip/master
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件。在这里是自动产生makefile文件用的工具。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件，在这里是自动产生 makefile 文件用的工具。&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># make install -- 这里用来安装 libwebsockets&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ldconfig 辅助命令， root 权限下 在/lib和/usr/lib 里添加库文件，无需将路径添加到 /etc/ld.so.conf 中，需要使用命令 ldconfig ,否则无法找到库文件。&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">###################&lt;/span>
@@ -180,31 +180,31 @@ alt="mqtt-format"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 以下出现的数字均为十六进制&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发起MQTT连接:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:10
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 剩余报文长度:4f
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名长度:0004
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名:4d515454
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 连接标识:04c2
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keep-alive时间&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>:001E
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 客户端ID:000F &lt;span class="m">646665653036633464633435363235&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 用户名:0005 61646d696e
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 密码:0009 7177657a78632e2e2e
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 返回:20 &lt;span class="m">02&lt;/span> &lt;span class="m">00&lt;/span> &lt;span class="m">00&lt;/span> 连接成功
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发起 MQTT 连接:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 剩余报文长度: 4f
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名长度: &lt;span class="m">0004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名: 4d515454
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 连接标识: 04c2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keep-alive 时间&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>: 001E
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 客户端ID: 000F &lt;span class="m">646665653036633464633435363235&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 用户名: &lt;span class="m">0005&lt;/span> 61646d696e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 密码: &lt;span class="m">0009&lt;/span> 7177657a78632e2e2e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 返回: &lt;span class="m">20&lt;/span> &lt;span class="m">02&lt;/span> &lt;span class="m">00&lt;/span> &lt;span class="m">00&lt;/span> 连接成功
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">订阅主题:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:82
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度:09
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别:00 &lt;span class="m">01&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Qos:00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">82&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度: &lt;span class="m">09&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别: &lt;span class="m">00&lt;/span> &lt;span class="m">01&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Qos: &lt;span class="m">00&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">取消订阅主题:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:a2
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 数据长度:08
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别:00 &lt;span class="m">02&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: a2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 数据长度: &lt;span class="m">08&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别: &lt;span class="m">00&lt;/span> &lt;span class="m">02&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发布主题消息
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">0x30&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">0010&lt;/span> 0000（二进制）
@@ -212,11 +212,11 @@ alt="mqtt-format"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ....0.. ------DUP标志
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .....00. ------Qos的等级 &lt;span class="m">0&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .......0 ------retain ：不设置
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:30
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度:0a
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息内容:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">30&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度: 0a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息内容: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">客户端关闭:
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> e0 &lt;span class="m">00&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">

@@ -1,7 +1,7 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="针对MQTT协议的解析以及mosquitto这个MQTT服务端软件的安装"><title>mosquitto部署及MQTT协议解析</title><link rel=canonical href=/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/><link rel=stylesheet href=/scss/style.min.9e6ea461bd4d5f885f21c14b6ab0d377bec940f02c919e3b70e4c518f99b851d.css><meta property="og:title" content="mosquitto部署及MQTT协议解析"><meta property="og:description" content="针对MQTT协议的解析以及mosquitto这个MQTT服务端软件的安装"><meta property="og:url" content="/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/"><meta property="og:site_name" content="chmod100's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="mosquitto"><meta property="article:tag" content="MQTT"><meta property="article:tag" content="部署文档"><meta property="article:published_time" content="2020-05-13T12:00:00+08:00"><meta property="article:modified_time" content="2020-05-13T12:00:00+08:00"><meta property="og:image" content="/indeximgs/back.jpg"><meta name=twitter:title content="mosquitto部署及MQTT协议解析"><meta name=twitter:description content="针对MQTT协议的解析以及mosquitto这个MQTT服务端软件的安装"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/indeximgs/back.jpg"><link rel="shortcut icon" href=imgs/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="针对 MQTT 协议的解析 & mosquitto 软件的安装"><title>mosquitto 部署及 MQTT 协议解析</title><link rel=canonical href=/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/><link rel=stylesheet href=/scss/style.min.9e6ea461bd4d5f885f21c14b6ab0d377bec940f02c919e3b70e4c518f99b851d.css><meta property="og:title" content="mosquitto 部署及 MQTT 协议解析"><meta property="og:description" content="针对 MQTT 协议的解析 & mosquitto 软件的安装"><meta property="og:url" content="/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/"><meta property="og:site_name" content="chmod100's blog"><meta property="og:type" content="article"><meta property="article:section" content="Post"><meta property="article:tag" content="mosquitto"><meta property="article:tag" content="MQTT"><meta property="article:tag" content="部署文档"><meta property="article:published_time" content="2020-05-13T12:00:00+08:00"><meta property="article:modified_time" content="2020-05-13T12:00:00+08:00"><meta property="og:image" content="/indeximgs/back.jpg"><meta name=twitter:title content="mosquitto 部署及 MQTT 协议解析"><meta name=twitter:description content="针对 MQTT 协议的解析 & mosquitto 软件的安装"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/indeximgs/back.jpg"><link rel="shortcut icon" href=imgs/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar_hudff42e9cceefac4b6035d553b968c716_25004_300x0_resize_box_3.png width=300 height=300 class=site-logo loading=lazy alt=Avatar></a>
 <span class=emoji>🍉</span></figure><div class=site-meta><h1 class=site-name><a href=/>chmod100's blog</a></h1><h2 class=site-description>Viva la vida.</h2></div></header><ol class=social-menu><li><a href=mailto:letfu@outlook.com target=_blank title=E-mail><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-gmail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 20h3a1 1 0 001-1V5a1 1 0 00-1-1h-3v16z"/><path d="M5 20h3V4H5A1 1 0 004 5v14a1 1 0 001 1z"/><path d="M16 4l-4 4-4-4"/><path d="M4 6.5l8 7.5 8-7.5"/></svg></a></li><li><a href=https://github.com/LetFu target=_blank title=GitHub><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><div class=menu-bottom-section><li id=dark-mode-toggle><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg><span>暗色模式</span></li></div></ol></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E9%83%A8%E7%BD%B2%E6%96%87%E6%A1%A3/>部署文档</a>
-<a href=/categories/%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/>协议解析</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/>mosquitto部署及MQTT协议解析</a></h2><h3 class=article-subtitle>针对MQTT协议的解析以及mosquitto这个MQTT服务端软件的安装</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>May 13, 2020</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><h2 id=安装>安装</h2><h3 id=手动安装>手动安装</h3><p>下载软件包并安装:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+<a href=/categories/%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/>协议解析</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/>mosquitto 部署及 MQTT 协议解析</a></h2><h3 class=article-subtitle>针对 MQTT 协议的解析 & mosquitto 软件的安装</h3></div><footer class=article-time><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg><time class=article-time--published>May 13, 2020</time></div><div><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg><time class=article-time--reading>阅读时长: 2 分钟</time></div></footer></div></header><section class=article-content><h2 id=安装>安装</h2><h3 id=手动安装>手动安装</h3><p>下载软件包并安装:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -31,7 +31,7 @@
 </span></span><span class=line><span class=cl>http://mosquitto.org/files/source/ 
 </span></span><span class=line><span class=cl><span class=c1>#下载 libwebsockets-master.zip</span>
 </span></span><span class=line><span class=cl>https://codeload.github.com/warmcat/libwebsockets/zip/master 
-</span></span><span class=line><span class=cl><span class=c1># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件。在这里是自动产生makefile文件用的工具。</span>
+</span></span><span class=line><span class=cl><span class=c1># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件，在这里是自动产生 makefile 文件用的工具。</span>
 </span></span><span class=line><span class=cl><span class=c1># make install -- 这里用来安装 libwebsockets</span>
 </span></span><span class=line><span class=cl><span class=c1># ldconfig 辅助命令， root 权限下 在/lib和/usr/lib 里添加库文件，无需将路径添加到 /etc/ld.so.conf 中，需要使用命令 ldconfig ,否则无法找到库文件。</span>
 </span></span><span class=line><span class=cl><span class=c1>###################</span>
@@ -149,31 +149,31 @@
 </span><span class=lnt>42
 </span><span class=lnt>43
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 以下出现的数字均为十六进制</span>
-</span></span><span class=line><span class=cl>发起MQTT连接:
-</span></span><span class=line><span class=cl> 固定报头:10
-</span></span><span class=line><span class=cl> 剩余报文长度:4f
-</span></span><span class=line><span class=cl> 协议名长度:0004
-</span></span><span class=line><span class=cl> 协议名:4d515454
-</span></span><span class=line><span class=cl> 连接标识:04c2
-</span></span><span class=line><span class=cl> keep-alive时间<span class=o>(</span>s<span class=o>)</span>:001E
-</span></span><span class=line><span class=cl> 客户端ID:000F <span class=m>646665653036633464633435363235</span>
-</span></span><span class=line><span class=cl> 用户名:0005 61646d696e
-</span></span><span class=line><span class=cl> 密码:0009 7177657a78632e2e2e
-</span></span><span class=line><span class=cl> 返回:20 <span class=m>02</span> <span class=m>00</span> <span class=m>00</span> 连接成功
+</span></span><span class=line><span class=cl>发起 MQTT 连接:
+</span></span><span class=line><span class=cl> 固定报头: <span class=m>10</span>
+</span></span><span class=line><span class=cl> 剩余报文长度: 4f
+</span></span><span class=line><span class=cl> 协议名长度: <span class=m>0004</span>
+</span></span><span class=line><span class=cl> 协议名: 4d515454
+</span></span><span class=line><span class=cl> 连接标识: 04c2
+</span></span><span class=line><span class=cl> keep-alive 时间<span class=o>(</span>s<span class=o>)</span>: 001E
+</span></span><span class=line><span class=cl> 客户端ID: 000F <span class=m>646665653036633464633435363235</span>
+</span></span><span class=line><span class=cl> 用户名: <span class=m>0005</span> 61646d696e
+</span></span><span class=line><span class=cl> 密码: <span class=m>0009</span> 7177657a78632e2e2e
+</span></span><span class=line><span class=cl> 返回: <span class=m>20</span> <span class=m>02</span> <span class=m>00</span> <span class=m>00</span> 连接成功
 </span></span><span class=line><span class=cl>订阅主题:
-</span></span><span class=line><span class=cl> 固定报头:82
-</span></span><span class=line><span class=cl> 消息长度:09
-</span></span><span class=line><span class=cl> 消息识别:00 <span class=m>01</span>
-</span></span><span class=line><span class=cl> 主题长度:00 <span class=m>04</span>
-</span></span><span class=line><span class=cl> 主题名:6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
-</span></span><span class=line><span class=cl> Qos:00
+</span></span><span class=line><span class=cl> 固定报头: <span class=m>82</span>
+</span></span><span class=line><span class=cl> 消息长度: <span class=m>09</span>
+</span></span><span class=line><span class=cl> 消息识别: <span class=m>00</span> <span class=m>01</span>
+</span></span><span class=line><span class=cl> 主题长度: <span class=m>00</span> <span class=m>04</span>
+</span></span><span class=line><span class=cl> 主题名: 6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
+</span></span><span class=line><span class=cl> Qos: <span class=m>00</span>
 </span></span><span class=line><span class=cl> 
 </span></span><span class=line><span class=cl>取消订阅主题:
-</span></span><span class=line><span class=cl> 固定报头:a2
-</span></span><span class=line><span class=cl> 数据长度:08
-</span></span><span class=line><span class=cl> 消息识别:00 <span class=m>02</span>
-</span></span><span class=line><span class=cl> 主题长度:00 <span class=m>04</span>
-</span></span><span class=line><span class=cl> 主题名:6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
+</span></span><span class=line><span class=cl> 固定报头: a2
+</span></span><span class=line><span class=cl> 数据长度: <span class=m>08</span>
+</span></span><span class=line><span class=cl> 消息识别: <span class=m>00</span> <span class=m>02</span>
+</span></span><span class=line><span class=cl> 主题长度: <span class=m>00</span> <span class=m>04</span>
+</span></span><span class=line><span class=cl> 主题名: 6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
 </span></span><span class=line><span class=cl> 
 </span></span><span class=line><span class=cl>发布主题消息
 </span></span><span class=line><span class=cl><span class=nv>0x30</span><span class=o>=</span><span class=m>0010</span> 0000（二进制）
@@ -181,11 +181,11 @@
 </span></span><span class=line><span class=cl>    ....0..  ------DUP标志
 </span></span><span class=line><span class=cl>    .....00. ------Qos的等级 <span class=m>0</span>
 </span></span><span class=line><span class=cl>    .......0 ------retain ：不设置
-</span></span><span class=line><span class=cl>    固定报头:30
-</span></span><span class=line><span class=cl>    消息长度:0a
-</span></span><span class=line><span class=cl>    主题长度:00 <span class=m>04</span>
-</span></span><span class=line><span class=cl>    主题名:6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
-</span></span><span class=line><span class=cl>    消息内容:6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
+</span></span><span class=line><span class=cl>    固定报头: <span class=m>30</span>
+</span></span><span class=line><span class=cl>    消息长度: 0a
+</span></span><span class=line><span class=cl>    主题长度: <span class=m>00</span> <span class=m>04</span>
+</span></span><span class=line><span class=cl>    主题名: 6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
+</span></span><span class=line><span class=cl>    消息内容: 6d <span class=m>71</span> <span class=m>74</span> <span class=m>74</span>
 </span></span><span class=line><span class=cl>客户端关闭:
 </span></span><span class=line><span class=cl> e0 <span class=m>00</span> 
 </span></span><span class=line><span class=cl> 

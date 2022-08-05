@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>命令手册 on chmod100's blog</title><link>/tags/%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/</link><description>Recent content in 命令手册 on chmod100's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 12 Aug 2021 12:00:00 +0800</lastBuildDate><atom:link href="/tags/%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/index.xml" rel="self" type="application/rss+xml"/><item><title>kubernetes常用操作命令</title><link>/p/kubernetes%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link><pubDate>Thu, 12 Aug 2021 12:00:00 +0800</pubDate><guid>/p/kubernetes%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid><description>&lt;h2 id="kubernetes命令">Kubernetes命令&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>命令手册 on chmod100's blog</title><link>/tags/%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/</link><description>Recent content in 命令手册 on chmod100's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 12 Aug 2021 12:00:00 +0800</lastBuildDate><atom:link href="/tags/%E5%91%BD%E4%BB%A4%E6%89%8B%E5%86%8C/index.xml" rel="self" type="application/rss+xml"/><item><title>kubernetes 常用操作命令</title><link>/p/kubernetes-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link><pubDate>Thu, 12 Aug 2021 12:00:00 +0800</pubDate><guid>/p/kubernetes-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid><description>&lt;h2 id="kubernetes命令">Kubernetes命令&lt;/h2>
 &lt;p>&lt;a class="link" href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-" target="_blank" rel="noopener"
 >完整命令使用手册&lt;/a>&lt;/p>
 &lt;h3 id="创建">创建&lt;/h3>
@@ -14,7 +14,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>使用yaml文件创建一个namespace&lt;/li>
+&lt;li>使用 yaml 文件创建一个 Namespace&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -25,7 +25,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>将某个yaml文件应用到某个namespace上&lt;/li>
+&lt;li>将某个 yaml 文件应用到某个 Namespace 上&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -36,7 +36,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>手动创建一个Deployment&lt;/li>
+&lt;li>手动创建一个 Deployment&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -47,9 +47,9 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="查看">查看&lt;/h3>
-&lt;p>kubectl get 命令如果不加参数将仅显示属于&lt;strong>default&lt;/strong>命名空间的资源对象&lt;/p>
+&lt;p>kubectl get 命令如果不加参数将仅显示属于 &lt;strong>default&lt;/strong> 命名空间的资源对象&lt;/p>
 &lt;ul>
-&lt;li>查看集群中Node的详细信息：&lt;/li>
+&lt;li>查看集群中 Node 的详细信息：&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -66,19 +66,19 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl describe nodes NODENAME
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的名称、标签、创建时间等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的运行状态：磁盘空间(DiskPressure)、内存(MemoryPressure)、网络(NetworkUnavailable)、PID资源(PIDPressure)全部正常则设置Node为Ready&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的主机地址和主机名&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node上的资源数量：Node的可用资源，包括CPU、内存数量、最大可调度Pod数量等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node可分配资源类：Node当前可用于分配的资源量&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主机系统信息：主机ID、系统UUID、Linux kernel版本号、操作系统类型与版本、Docker版本号、kubelet与kube-proxy版本号等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 当前运行的Pod列表的概要信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的名称、标签、创建时间等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的运行状态：磁盘空间(DiskPressure)、内存(MemoryPressure)、网络(NetworkUnavailable)、PID资源(PIDPressure)全部正常则设置Node为Ready&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的主机地址和主机名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 上的资源数量：Node 的可用资源，包括 CPU、内存数量、最大可调度 Pod 数量等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 可分配资源类：Node 当前可用于分配的资源量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主机系统信息：主机 ID、系统 UUID、Linux kernel 版本号、操作系统类型与版本、runtime 版本号、kubelet 与 kube-proxy 版本号等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 当前运行的 Pod 列表的概要信息&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 已分配的资源使用概要信息，如资源申请的最低、最大允许使用量占系统总量的百分比&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node相关的Event信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 相关的 Event 信息&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看pod的详细信息&lt;/li>
+&lt;li>查看 Pod 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -100,7 +100,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看当前所有namespace&lt;/li>
+&lt;li>查看当前所有 Namespace&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -111,7 +111,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看ResourceQuota的详细信息&lt;/li>
+&lt;li>查看 ResourceQuota 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -122,7 +122,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的信息&lt;/li>
+&lt;li>查看 Deployment 的信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -134,14 +134,14 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl get deployments &lt;span class="o">(&lt;/span>--all-namespaces&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#DESIRED:Pod副本数量的期望值&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#CURRENT:当前Replica的值&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#UP-TO-DATE:最新版本的Pod副本数量&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#AVAILABLE:当前集群可用的Pod副本数量，存活数量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># DESIRED: Pod 副本数量的期望值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># CURRENT: 当前 Replica 的值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># UP-TO-DATE: 最新版本的 Pod 副本数量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AVAILABLE: 当前集群可用的 Pod 副本数量，存活数量&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的详细信息&lt;/li>
+&lt;li>查看 Deployment 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -152,7 +152,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看当前所有的rs&lt;/li>
+&lt;li>查看当前所有的 ReplicaSet&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -163,7 +163,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的ReplicaSet的详细信息&lt;/li>
+&lt;li>查看 Deployment 的 ReplicaSet 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -174,7 +174,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看namespace中的LimitRange&lt;/li>
+&lt;li>查看 Namespace 中的 LimitRange&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -185,7 +185,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看endpoint列表&lt;/li>
+&lt;li>查看 Endpoint 列表&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -196,7 +196,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看svc的详细信息&lt;/li>
+&lt;li>查看 Service 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -207,14 +207,14 @@
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl get svc SERVICENAME -o yaml
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports的targetPord用来确定提供该服务的容器所暴露的端口号，即业务进程在容器内的TCP/IP接入端口&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports的port定义了Service的虚端口&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果定义服务时没定义targetPort，则默认targetPort和port相同&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports 的 targetPord 用来确定提供该服务的容器所暴露的端口号，即业务进程在容器内的 TCP/IP 接入端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports 的 port 定义了 Service 的虚端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果定义服务时没定义 targetPort，则默认 targetPort 和 port 相同&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="修改">修改&lt;/h3>
 &lt;ul>
-&lt;li>修改RC的副本数量，实现Pod的动态缩放&lt;/li>
+&lt;li>修改 RC 的副本数量，实现 Pod 的动态缩放&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -225,7 +225,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>给Node打上标签&lt;/li>
+&lt;li>给 Node 打上标签&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">

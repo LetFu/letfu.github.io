@@ -95,7 +95,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s2"> &lt;/span>&lt;span class="k">$(&lt;/span>lsb_release -cs&lt;span class="k">)&lt;/span>&lt;span class="s2"> stable&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="安装docker引擎">安装Docker引擎&lt;/h3>
+&lt;/div>&lt;h3 id="安装-docker-引擎">安装 Docker 引擎&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -108,7 +108,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo docker info
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="配置containerd">配置containerd&lt;/h3>
+&lt;/div>&lt;h3 id="配置-containerd">配置 containerd&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -119,7 +119,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">containerd config default &lt;span class="p">|&lt;/span> sudo tee /etc/containerd/config.toml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="重启containerd">重启containerd&lt;/h3>
+&lt;/div>&lt;h3 id="重启-containerd">重启 containerd&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -153,7 +153,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo systemctl restart containerd
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="配置docker驱动">配置Docker驱动&lt;/h3>
+&lt;/div>&lt;h3 id="配置-docker-驱动">配置 Docker 驱动&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -207,7 +207,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt-get install -y apt-transport-https ca-certificates curl
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="2-下载-google-cloud-公开签名秘钥访问不了google则跳过">2. 下载 Google Cloud 公开签名秘钥(访问不了Google则跳过)&lt;/h3>
+&lt;/div>&lt;h3 id="2-下载-google-cloud-公开签名秘钥访问不了-google-则跳过">2. 下载 Google Cloud 公开签名秘钥(访问不了 Google 则跳过)&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -218,7 +218,7 @@ Runtime：containerd&lt;/p>
 &lt;/div>
 &lt;/div>&lt;h3 id="3-添加-kubernetes-apt-仓库">3. 添加 Kubernetes apt 仓库&lt;/h3>
 &lt;ul>
-&lt;li>可以访问Google则添加官方源即可&lt;/li>
+&lt;li>可以访问 Google 则添加官方源即可&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -270,14 +270,14 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;span class="lnt">4
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 因安装时1.23为当前最新版本，所以没有指定版本安装，工具需要根据之后运行的kubernetes版本进行指定版本安装&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 因安装时 1.23 为当前最新版本，所以没有指定版本安装，工具需要根据之后运行的 kubernetes 版本进行指定版本安装&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt-get install -y kubelet kubeadm kubectl
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt-mark hold kubelet kubeadm kubectl
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h2 id="使用kubeadm初始化集群">使用kubeadm初始化集群&lt;/h2>
-&lt;h3 id="修改kubeadm默认配置信息">修改kubeadm默认配置信息&lt;/h3>
+&lt;/div>&lt;h2 id="使用-kubeadm-初始化集群">使用 kubeadm 初始化集群&lt;/h2>
+&lt;h3 id="修改-kubeadm-默认配置信息">修改 kubeadm 默认配置信息&lt;/h3>
 &lt;ol>
 &lt;li>确定使用哪种网络插件实现，kubeadm 只支持 CNI 网络插件；这里使用 Flannel 插件&lt;/li>
 &lt;li>修改 kubeadm 的默认仓库为阿里云仓库镜像&lt;/li>
@@ -318,13 +318,13 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改仓库镜像地址与&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s2">&amp;#34;s/imageRepository: .*/imageRepository: registry.cn-hangzhou.aliyuncs.com\/google_containers/g&amp;#34;&lt;/span> kubeadm-init-config.yaml
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改kubernetes版本号（一般默认和kubeadm版本一致）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改 kubernetes 版本号（一般默认和 kubeadm 版本一致）&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sed -i &lt;span class="s2">&amp;#34;s/kubernetesVersion: .*/kubernetesVersion: v1.23.4/g&amp;#34;&lt;/span> kubeadm-init-config.yaml
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改默认criSocket为containerd&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改默认 criSocket 为 containerd&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># sed -i &amp;#34;s/criSocket: .*/criSocket: \/run\/containerd\/containerd.sock/g&amp;#34; kubeadm-init-config.yaml&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改默认DNS服务&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改默认 DNS 服务&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">address&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="sb">`&lt;/span>ifconfig eth0 &lt;span class="p">|&lt;/span> egrep &lt;span class="s2">&amp;#34;inet\s&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> awk &lt;span class="s1">&amp;#39;{print $2}&amp;#39;&lt;/span>&lt;span class="sb">`&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> sed -i &lt;span class="s2">&amp;#34;s/advertiseAddress: .*/advertiseAddress: &lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nv">address&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="s2">/g&amp;#34;&lt;/span> kubeadm-init-config.yaml
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 在 kubeadm-init-config.yaml 增加 podSubnet: 参数，如&lt;/span>
@@ -348,7 +348,7 @@ Runtime：containerd&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubeadm init --config ./kubeadm-init-config.yaml
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="配置kubectl">配置Kubectl&lt;/h3>
+&lt;/div>&lt;h3 id="配置-kubectl">配置 Kubectl&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -360,16 +360,16 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;span class="lnt">7
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 非root用户可以运行 kubectl&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 非 root 用户可以运行 kubectl&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p &lt;span class="nv">$HOME&lt;/span>/.kube
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo cp -i /etc/kubernetes/admin.conf &lt;span class="nv">$HOME&lt;/span>/.kube/config
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo chown &lt;span class="k">$(&lt;/span>id -u&lt;span class="k">)&lt;/span>:&lt;span class="k">$(&lt;/span>id -g&lt;span class="k">)&lt;/span> &lt;span class="nv">$HOME&lt;/span>/.kube/config
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># root用户运行kubectl&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># root 用户运行 kubectl&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">export&lt;/span> &lt;span class="nv">KUBECONFIG&lt;/span>&lt;span class="o">=&lt;/span>/etc/kubernetes/admin.conf
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="部署flannel插件">部署flannel插件&lt;/h3>
+&lt;/div>&lt;h3 id="部署-flannel-插件">部署 flannel 插件&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -379,7 +379,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="其他节点加入">其他节点加入&lt;/h3>
-&lt;p>其它的node节点加入集群(&lt;strong>如果只有一台master则跳过这个步骤&lt;/strong>)；&lt;strong>确保node节点和master节点的kube工具版本相同，镜像版本相同&lt;/strong>；&lt;strong>node节点在kubelet init之前的步骤和master的步骤相同&lt;/strong>&lt;/p>
+&lt;p>其它的 node 节点加入集群(&lt;strong>如果只有一台 master 则跳过这个步骤&lt;/strong>)；&lt;strong>确保 node 节点和 master 节点的 kube 工具版本相同，镜像版本相同&lt;/strong>；&lt;strong>node 节点在 kubelet init 之前的步骤和 master 的步骤相同&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -388,8 +388,8 @@ Runtime：containerd&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubeadm join --token &amp;lt;token&amp;gt; &amp;lt;control-plane-host&amp;gt;:&amp;lt;control-plane-port&amp;gt; --discovery-token-ca-cert-hash sha256:&amp;lt;hash&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="将master节点设置为工作节点">将master节点设置为工作节点&lt;/h3>
-&lt;p>&lt;strong>K8S集群默认不会将Pod调度到k8s-master上。在Master上，去除master的taint，使用master也能被调度pod，可以运行以下命令使其作为一个工作节点：&lt;/strong>&lt;/p>
+&lt;/div>&lt;h3 id="将-master-节点设置为工作节点">将 master 节点设置为工作节点&lt;/h3>
+&lt;p>&lt;strong>K8S 集群默认不会将 Pod 调度到 k8s-master 上。在 Master 上，去除 master 的 taint，使Pod 也可以调度到 Master 上，可以运行以下命令使其作为一个工作节点：&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
@@ -398,7 +398,7 @@ Runtime：containerd&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl taint nodes --all node-role.kubernetes.io/master-
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="后续node节点加入集群">后续Node节点加入集群&lt;/h3>
+&lt;/div>&lt;h3 id="后续-node-节点加入集群">后续 Node 节点加入集群&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -414,20 +414,20 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;span class="lnt">11
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示k8s当前所有token&lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 显示 k8s 当前所有 token&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubeadm token list
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成一条永久有效的token&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成一条永久有效的 token&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubeadm token create --ttl &lt;span class="m">0&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用openssl获取ca证书sha256编码的hash值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用 openssl 获取 ca 证书 sha256 编码的 hash 值&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt &lt;span class="p">|&lt;/span> openssl rsa -pubin -outform der 2&amp;gt;/dev/null &lt;span class="p">|&lt;/span> openssl dgst -sha256 -hex &lt;span class="p">|&lt;/span> sed &lt;span class="s1">&amp;#39;s/^.* //&amp;#39;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># node节点加入master节点&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># node 节点加入 master 节点&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubeadm join 10.10.7.30:6443 --token Token --discovery-token-ca-cert-hash sha256:ca的hash
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div>&lt;h3 id="kubernetes环境重置">kubernetes环境重置&lt;/h3>
+&lt;/div>&lt;h3 id="kubernetes-环境重置">kubernetes 环境重置&lt;/h3>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
@@ -450,7 +450,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;span class="lnt">18
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
-&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重置k8s &lt;/span>
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重置 k8s &lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubeadm reset
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">iptables -F &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> iptables -t nat -F &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> iptables -t mangle -F &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> iptables -X
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rm -rf ~/.kube
@@ -464,9 +464,9 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ip link delete flannel.1
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl start docker
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重载kubelet服务配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重载 kubelet 服务配置文件&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl daemon-reload
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启kubelet&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启 kubelet&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">systemctl restart kubelet
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
@@ -547,7 +547,7 @@ Runtime：containerd&lt;/p>
 &lt;td>所有&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>kubernetes常用操作命令</title><link>/p/kubernetes%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link><pubDate>Thu, 12 Aug 2021 12:00:00 +0800</pubDate><guid>/p/kubernetes%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid><description>&lt;h2 id="kubernetes命令">Kubernetes命令&lt;/h2>
+&lt;/table></description></item><item><title>kubernetes 常用操作命令</title><link>/p/kubernetes-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</link><pubDate>Thu, 12 Aug 2021 12:00:00 +0800</pubDate><guid>/p/kubernetes-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</guid><description>&lt;h2 id="kubernetes命令">Kubernetes命令&lt;/h2>
 &lt;p>&lt;a class="link" href="https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#-strong-getting-started-strong-" target="_blank" rel="noopener"
 >完整命令使用手册&lt;/a>&lt;/p>
 &lt;h3 id="创建">创建&lt;/h3>
@@ -563,7 +563,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>使用yaml文件创建一个namespace&lt;/li>
+&lt;li>使用 yaml 文件创建一个 Namespace&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -574,7 +574,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>将某个yaml文件应用到某个namespace上&lt;/li>
+&lt;li>将某个 yaml 文件应用到某个 Namespace 上&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -585,7 +585,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>手动创建一个Deployment&lt;/li>
+&lt;li>手动创建一个 Deployment&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -596,9 +596,9 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="查看">查看&lt;/h3>
-&lt;p>kubectl get 命令如果不加参数将仅显示属于&lt;strong>default&lt;/strong>命名空间的资源对象&lt;/p>
+&lt;p>kubectl get 命令如果不加参数将仅显示属于 &lt;strong>default&lt;/strong> 命名空间的资源对象&lt;/p>
 &lt;ul>
-&lt;li>查看集群中Node的详细信息：&lt;/li>
+&lt;li>查看集群中 Node 的详细信息：&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -615,19 +615,19 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl describe nodes NODENAME
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的名称、标签、创建时间等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的运行状态：磁盘空间(DiskPressure)、内存(MemoryPressure)、网络(NetworkUnavailable)、PID资源(PIDPressure)全部正常则设置Node为Ready&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node的主机地址和主机名&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node上的资源数量：Node的可用资源，包括CPU、内存数量、最大可调度Pod数量等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node可分配资源类：Node当前可用于分配的资源量&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主机系统信息：主机ID、系统UUID、Linux kernel版本号、操作系统类型与版本、Docker版本号、kubelet与kube-proxy版本号等&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 当前运行的Pod列表的概要信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的名称、标签、创建时间等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的运行状态：磁盘空间(DiskPressure)、内存(MemoryPressure)、网络(NetworkUnavailable)、PID资源(PIDPressure)全部正常则设置Node为Ready&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 的主机地址和主机名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 上的资源数量：Node 的可用资源，包括 CPU、内存数量、最大可调度 Pod 数量等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 可分配资源类：Node 当前可用于分配的资源量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 主机系统信息：主机 ID、系统 UUID、Linux kernel 版本号、操作系统类型与版本、runtime 版本号、kubelet 与 kube-proxy 版本号等&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 当前运行的 Pod 列表的概要信息&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 已分配的资源使用概要信息，如资源申请的最低、最大允许使用量占系统总量的百分比&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node相关的Event信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># Node 相关的 Event 信息&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看pod的详细信息&lt;/li>
+&lt;li>查看 Pod 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -649,7 +649,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看当前所有namespace&lt;/li>
+&lt;li>查看当前所有 Namespace&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -660,7 +660,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看ResourceQuota的详细信息&lt;/li>
+&lt;li>查看 ResourceQuota 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -671,7 +671,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的信息&lt;/li>
+&lt;li>查看 Deployment 的信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -683,14 +683,14 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl get deployments &lt;span class="o">(&lt;/span>--all-namespaces&lt;span class="o">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#DESIRED:Pod副本数量的期望值&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#CURRENT:当前Replica的值&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#UP-TO-DATE:最新版本的Pod副本数量&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#AVAILABLE:当前集群可用的Pod副本数量，存活数量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># DESIRED: Pod 副本数量的期望值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># CURRENT: 当前 Replica 的值&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># UP-TO-DATE: 最新版本的 Pod 副本数量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># AVAILABLE: 当前集群可用的 Pod 副本数量，存活数量&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的详细信息&lt;/li>
+&lt;li>查看 Deployment 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -701,7 +701,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看当前所有的rs&lt;/li>
+&lt;li>查看当前所有的 ReplicaSet&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -712,7 +712,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看Deployment的ReplicaSet的详细信息&lt;/li>
+&lt;li>查看 Deployment 的 ReplicaSet 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -723,7 +723,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看namespace中的LimitRange&lt;/li>
+&lt;li>查看 Namespace 中的 LimitRange&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -734,7 +734,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看endpoint列表&lt;/li>
+&lt;li>查看 Endpoint 列表&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -745,7 +745,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>查看svc的详细信息&lt;/li>
+&lt;li>查看 Service 的详细信息&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -756,14 +756,14 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl get svc SERVICENAME -o yaml
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports的targetPord用来确定提供该服务的容器所暴露的端口号，即业务进程在容器内的TCP/IP接入端口&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports的port定义了Service的虚端口&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果定义服务时没定义targetPort，则默认targetPort和port相同&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports 的 targetPord 用来确定提供该服务的容器所暴露的端口号，即业务进程在容器内的 TCP/IP 接入端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># spec.ports 的 port 定义了 Service 的虚端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 如果定义服务时没定义 targetPort，则默认 targetPort 和 port 相同&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;h3 id="修改">修改&lt;/h3>
 &lt;ul>
-&lt;li>修改RC的副本数量，实现Pod的动态缩放&lt;/li>
+&lt;li>修改 RC 的副本数量，实现 Pod 的动态缩放&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -774,7 +774,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
 &lt;/div>&lt;ul>
-&lt;li>给Node打上标签&lt;/li>
+&lt;li>给 Node 打上标签&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;div class="chroma">
 &lt;table class="lntable">&lt;tr>&lt;td class="lntd">
@@ -784,7 +784,7 @@ Runtime：containerd&lt;/p>
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl label nodes &amp;lt;node-name&amp;gt; &amp;lt;label-key&amp;gt;&lt;span class="o">=&lt;/span>&amp;lt;label-value&amp;gt;
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>mosquitto部署及MQTT协议解析</title><link>/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 13 May 2020 12:00:00 +0800</pubDate><guid>/p/mosquitto%E9%83%A8%E7%BD%B2%E5%8F%8Amqtt%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</guid><description>&lt;h2 id="安装">安装&lt;/h2>
+&lt;/div></description></item><item><title>mosquitto 部署及 MQTT 协议解析</title><link>/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</link><pubDate>Wed, 13 May 2020 12:00:00 +0800</pubDate><guid>/p/mosquitto-%E9%83%A8%E7%BD%B2%E5%8F%8A-mqtt-%E5%8D%8F%E8%AE%AE%E8%A7%A3%E6%9E%90/</guid><description>&lt;h2 id="安装">安装&lt;/h2>
 &lt;h3 id="手动安装">手动安装&lt;/h3>
 &lt;p>下载软件包并安装:&lt;/p>
 &lt;!-- raw HTML omitted -->
@@ -822,7 +822,7 @@ Runtime：containerd&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">http://mosquitto.org/files/source/
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#下载 libwebsockets-master.zip&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://codeload.github.com/warmcat/libwebsockets/zip/master
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件。在这里是自动产生makefile文件用的工具。&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># cmake -- 用途是能通过一系列的源码和相关的配置来生成需要的编译器平台上的项目文件，在这里是自动产生 makefile 文件用的工具。&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># make install -- 这里用来安装 libwebsockets&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># ldconfig 辅助命令， root 权限下 在/lib和/usr/lib 里添加库文件，无需将路径添加到 /etc/ld.so.conf 中，需要使用命令 ldconfig ,否则无法找到库文件。&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">###################&lt;/span>
@@ -966,31 +966,31 @@ alt="mqtt-format"
 &lt;/span>&lt;/code>&lt;/pre>&lt;/td>
 &lt;td class="lntd">
 &lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 以下出现的数字均为十六进制&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发起MQTT连接:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:10
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 剩余报文长度:4f
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名长度:0004
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名:4d515454
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 连接标识:04c2
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keep-alive时间&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>:001E
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 客户端ID:000F &lt;span class="m">646665653036633464633435363235&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 用户名:0005 61646d696e
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 密码:0009 7177657a78632e2e2e
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 返回:20 &lt;span class="m">02&lt;/span> &lt;span class="m">00&lt;/span> &lt;span class="m">00&lt;/span> 连接成功
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发起 MQTT 连接:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">10&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 剩余报文长度: 4f
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名长度: &lt;span class="m">0004&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 协议名: 4d515454
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 连接标识: 04c2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> keep-alive 时间&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>: 001E
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 客户端ID: 000F &lt;span class="m">646665653036633464633435363235&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 用户名: &lt;span class="m">0005&lt;/span> 61646d696e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 密码: &lt;span class="m">0009&lt;/span> 7177657a78632e2e2e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 返回: &lt;span class="m">20&lt;/span> &lt;span class="m">02&lt;/span> &lt;span class="m">00&lt;/span> &lt;span class="m">00&lt;/span> 连接成功
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">订阅主题:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:82
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度:09
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别:00 &lt;span class="m">01&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Qos:00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">82&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度: &lt;span class="m">09&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别: &lt;span class="m">00&lt;/span> &lt;span class="m">01&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Qos: &lt;span class="m">00&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">取消订阅主题:
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:a2
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 数据长度:08
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别:00 &lt;span class="m">02&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: a2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 数据长度: &lt;span class="m">08&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息识别: &lt;span class="m">00&lt;/span> &lt;span class="m">02&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">发布主题消息
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nv">0x30&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="m">0010&lt;/span> 0000（二进制）
@@ -998,11 +998,11 @@ alt="mqtt-format"
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ....0.. ------DUP标志
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .....00. ------Qos的等级 &lt;span class="m">0&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> .......0 ------retain ：不设置
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头:30
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度:0a
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度:00 &lt;span class="m">04&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息内容:6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 固定报头: &lt;span class="m">30&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息长度: 0a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题长度: &lt;span class="m">00&lt;/span> &lt;span class="m">04&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 主题名: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 消息内容: 6d &lt;span class="m">71&lt;/span> &lt;span class="m">74&lt;/span> &lt;span class="m">74&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">客户端关闭:
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> e0 &lt;span class="m">00&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
